@@ -58,4 +58,15 @@ public class GlobalExceptionHandler {
                 .status(HttpStatus.NOT_FOUND)
                 .body(response);
     }
+    @ExceptionHandler(CompanyNotFoundException.class)
+    public ResponseEntity<ApiErrorResponse> handleCompanyNotFound(
+            CompanyNotFoundException ex) {
+
+        ApiErrorResponse response =
+                new ApiErrorResponse(404, ex.getMessage());
+
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body(response);
+    }
 }
